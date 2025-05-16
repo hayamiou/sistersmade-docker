@@ -1,0 +1,21 @@
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# Step 1 : add pom.xml & dependencies
+COPY pom.xml ./
+COPY .mvn/ .mvn/
+COPY mvnw ./
+
+RUN ./mvnw dependency:go-offline
+
+# Step 2 : add the rest of the project
+COPY . .
+
+# Step 3 : build
+RUN ./mvnw package -DskipTests
+
+# Step 4 : run the built JAR
+CMD ["java", "-jar", "target/backend_project_template-0.0.1-SNAPSHOT.jar"]
+
+EXPOSE 8080

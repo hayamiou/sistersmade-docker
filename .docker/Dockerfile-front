@@ -1,0 +1,16 @@
+FROM bitnami/node:20
+
+WORKDIR /app
+
+# Step 1 : install dependencies with cache
+COPY package*.json ./
+RUN npm install -g npm@11.1.0
+RUN npm install
+
+# Step 2 : copy rest of the project
+COPY . .
+
+# Step 3 : start app
+CMD ["npm", "run", "start"]
+
+EXPOSE 4200
