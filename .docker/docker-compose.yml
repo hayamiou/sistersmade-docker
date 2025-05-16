@@ -3,7 +3,7 @@ services:
     container_name: sistersmade-front
     build:
       context: ../sistersmade-front
-      dockerfile: ../.docker/Dockerfile-front
+      dockerfile: ./Dockerfile-front
     ports:
       - "4200:4200"
     volumes:
@@ -16,7 +16,7 @@ services:
     container_name: sistersmade-back
     build:
       context: ../sistersmade-back
-      dockerfile: ../.docker/Dockerfile-back
+      dockerfile: ./Dockerfile-back
     ports:
       - "8080:8080"
     networks:
